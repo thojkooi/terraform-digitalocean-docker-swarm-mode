@@ -1,0 +1,12 @@
+*.pem
+*.crt
+*.key
+*.tfvars
+
+# For VIM Users
+*.swp
+
+# Terraform assets
+*.tfstate
+*.tfstate.*
+.terraform

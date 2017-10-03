@@ -11,7 +11,7 @@ variable "ssh_keys" {
 }
 
 module "swarm-cluster" {
-    source           = "../../"
+    source           = "github.com/thojkooi/terraform-digitalocean-docker-swarm-mode"
     total_managers   = 1
     total_workers    = 0
     region           = "ams3"

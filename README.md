@@ -1,8 +1,8 @@
-# Terraform
+# Terraform DigitalOcean Docker Swarm mode
 
 Terraform module to provision a Docker Swarm mode cluster in a single availability zone on DigitalOcean, using a private network.
 
-By default using the CoreOS Alpha image provided by DigitalOcean, but supports expandable configuration to support installation and configuration of e.g. puppet or other configuration management tooling or manual installation of Docker through other means.
+By default using the CoreOS alpha image provided by DigitalOcean, but supports expandable configuration to support installation and configuration of e.g. puppet or other configuration management tooling or manual installation of Docker through other means.
 
 - [Requirements](#requirements)
 - [Usage](#usage)
@@ -33,6 +33,10 @@ module "swarm-cluster" {
 
 Terraform uses an SSH key to connect to the created droplets in order to issue `docker swarm join` commands. By default this uses `~/.ssh/id_rsa`. If you wish to use a different key, you can modify this using the variable `provision_ssh_key`. You also need to ensure the public key is added to your DigitalOcean account and it's ID is listed in both the `manager_ssh_keys` and `worker_ssh_keys` lists.
 
+### Notes
+
+This module does not set up a firewall or modifies any other security settings. Please configure this by providing user data for the manager and worker nodes. Also set up firewall rules on DigitalOcean for the cluster, to ensure only cluster members can access the internal Swarm ports.
+
 ## Examples
 
 For examples, see the [examples directory](https://github.com/thojkooi/terraform-digitalocean-swarm-mode/tree/master/examples).
@@ -48,8 +52,8 @@ module "swarm-cluster" {
     total_workers     = 1
     domain            = "do.example.com"
     do_token          = "${var.do_token}"
-    manager_ssh_keys  = [4735469, 11406775]
-    worker_ssh_keys   = [4735469, 11406775]
+    manager_ssh_keys  = "${var.ssh_keys}"
+    worker_ssh_keys   = "${var.ssh_keys}"
     manager_os        = "centos-7-x64"
     worker_os         = "centos-7-x64"
     provision_user    = "root"

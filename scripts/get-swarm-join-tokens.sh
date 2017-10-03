@@ -2,12 +2,9 @@
 
 # Processing JSON in shell scripts
 # https://www.terraform.io/docs/providers/external/data_source.html#processing-json-in-shell-scripts
+# Credits to https://github.com/knpwrs/docker-swarm-terraform for inspiration on how to do this
 
-# Exit if any of the intermediate steps fail
 set -e
-
-# Extract "host" argument from the input into HOST shell variable
-
 eval "$(jq -r '@sh "HOST=\(.host) USER=\(.user) PRIVATE_KEY=\(.private_key)"')"
 
 # Fetch the manager join token

@@ -20,7 +20,8 @@ By default using the CoreOS alpha image provided by DigitalOcean, but supports e
 
 ```hcl
 module "swarm-cluster" {
-  source           = "github.com/thojkooi/terraform-digitalocean-swarm-mode"
+  source           = "github.com/thojkooi/terraform-digitalocean-docker-swarm-mode"
+  domain           = "do.example.com"
   total_managers   = 3
   total_workers    = 2
   do_token         = "${var.do_token}"
@@ -39,7 +40,7 @@ This module does not set up a firewall or modifies any other security settings. 
 
 ## Examples
 
-For examples, see the [examples directory](https://github.com/thojkooi/terraform-digitalocean-swarm-mode/tree/master/examples).
+For examples, see the [examples directory](https://github.com/thojkooi/terraform-digitalocean-docker-swarm-mode/tree/master/examples).
 
 ### Using user data
 
@@ -47,7 +48,7 @@ You can use user_data to manually install Docker on other OS images or use it to
 
 ```hcl
 module "swarm-cluster" {
-    source            = "../../"
+    source            = "github.com/thojkooi/terraform-digitalocean-docker-swarm-mode"
     total_managers    = 1
     total_workers     = 1
     domain            = "do.example.com"
@@ -70,7 +71,7 @@ module "swarm-cluster" {
 ```hc1
 
 module "swarm-cluster" {
-    source           = "../../"
+    source           = "github.com/thojkooi/terraform-digitalocean-docker-swarm-mode"
     total_managers   = 1
     total_workers    = 0
     region           = "ams3"

@@ -6,6 +6,10 @@ variable "ssh_keys" {
     type = "list"
 }
 
+provider "digitalocean" {
+  token = "${var.do_token}"
+}
+
 resource "digitalocean_tag" "cluster" {
     name = "cluster"
 }

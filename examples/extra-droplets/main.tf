@@ -2,6 +2,10 @@
 variable "do_token" {
 }
 
+provider "digitalocean" {
+  token = "${var.do_token}"
+}
+
 variable "ssh_keys" {
   type = "list"
 }

@@ -7,7 +7,7 @@ By default using the CoreOS alpha image provided by DigitalOcean, but supports e
 - [Requirements](#requirements)
 - [Usage](#usage)
 - [Examples](#examples)
-- [Swarm set-up](#swarm set-up)
+- [Swarm set-up](#swarm-set-up)
 
 ## Requirements
 
@@ -68,7 +68,7 @@ module "swarm-cluster" {
 
 ### Extra nodes
 
-```hc1
+```hcl
 
 module "swarm-cluster" {
     source           = "github.com/thojkooi/terraform-digitalocean-docker-swarm-mode"

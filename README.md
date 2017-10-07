@@ -2,8 +2,6 @@
 
 Terraform module to provision a Docker Swarm mode cluster in a single availability zone on DigitalOcean, using a private network.
 
-By default using the CoreOS alpha image provided by DigitalOcean, but supports expandable configuration to support installation and configuration of e.g. puppet or other configuration management tooling or manual installation of Docker through other means.
-
 - [Requirements](#requirements)
 - [Usage](#usage)
 - [Examples](#examples)
@@ -36,7 +34,7 @@ Terraform uses an SSH key to connect to the created droplets in order to issue `
 
 ### Notes
 
-This module does not set up a firewall or modifies any other security settings. Please configure this by providing user data for the manager and worker nodes. Also set up firewall rules on DigitalOcean for the cluster, to ensure only cluster members can access the internal Swarm ports.
+This module does not set up a firewall or modifies any other security settings. Please configure this by providing user data for the manager and worker nodes. Also set up firewall rules on DigitalOcean for the cluster, to ensure only cluster members can access the internal Swarm ports. You can use the [digitalocean-docker-swarm-firewall](https://github.com/thojkooi/terraform-digitalocean-docker-swarm-firewall) module for this. Look in the [firewall examples directory](https://github.com/thojkooi/terraform-digitalocean-docker-swarm-mode/tree/master/examples/firewall) for inspiration on how to do this.
 
 ## Examples
 

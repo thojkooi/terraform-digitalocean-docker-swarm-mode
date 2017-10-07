@@ -20,15 +20,6 @@ resource "digitalocean_tag" "worker" {
   name = "worker"
 }
 
-module "swarm-firewall" {
-  source                     = "github.com/thojkooi/terraform-digitalocean-swarm-firewall"
-  do_token                   = "${var.do_token}"
-  prefix                     = "example-com"
-  cluster_tags               = ["${digitalocean_tag.cluster.id}", "${digitalocean_tag.manager.id}", "${digitalocean_tag.worker.id}"]
-  cluster_droplet_ids        = []
-  allowed_outbound_addresses = ["0.0.0.0/0", "::/0"]
-}
-
 module "swarm-cluster" {
   source           = "github.com/thojkooi/terraform-digitalocean-docker-swarm-mode"
   total_managers   = 3
@@ -40,4 +31,13 @@ module "swarm-cluster" {
   manager_tags     = ["${digitalocean_tag.cluster.id}", "${digitalocean_tag.manager.id}"]
   worker_tags      = ["${digitalocean_tag.cluster.id}", "${digitalocean_tag.worker.id}"]
   domain           = "do.example.com"
+}
+
+module "swarm-firewall" {
+  source                     = "github.com/thojkooi/terraform-digitalocean-docker-swarm-firewall"
+  do_token                   = "${var.do_token}"
+  prefix                     = "example-com"
+  cluster_tags               = ["${digitalocean_tag.cluster.id}", "${digitalocean_tag.manager.id}", "${digitalocean_tag.worker.id}"]
+  cluster_droplet_ids        = []
+  allowed_outbound_addresses = ["0.0.0.0/0"]
 }

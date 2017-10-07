@@ -1,6 +1,4 @@
-
-variable "do_token" {
-}
+variable "do_token" {}
 
 provider "digitalocean" {
   token = "${var.do_token}"
@@ -11,38 +9,37 @@ variable "ssh_keys" {
 }
 
 module "swarm-cluster" {
-    source           = "github.com/thojkooi/terraform-digitalocean-docker-swarm-mode"
-    total_managers   = 1
-    total_workers    = 0
-    region           = "ams3"
-    do_token         = "${var.do_token}"
-    manager_ssh_keys = "${var.ssh_keys}"
-    worker_ssh_keys  = "${var.ssh_keys}"
-    domain           = "do.example.com"
+  source           = "github.com/thojkooi/terraform-digitalocean-docker-swarm-mode"
+  total_managers   = 1
+  total_workers    = 0
+  region           = "ams3"
+  do_token         = "${var.do_token}"
+  manager_ssh_keys = "${var.ssh_keys}"
+  worker_ssh_keys  = "${var.ssh_keys}"
+  domain           = "do.example.com"
 }
 
 resource "digitalocean_droplet" "worker" {
-    ssh_keys           = "${var.ssh_keys}"
-    image              = "coreos-alpha"
-    region             = "ams3"
-    size               = "512mb"
-    private_networking = true
-    backups            = false
-    ipv6               = false
-    name               = "custom-node"
-    depends_on         = ["module.swarm-cluster"]
+  ssh_keys           = "${var.ssh_keys}"
+  image              = "coreos-alpha"
+  region             = "ams3"
+  size               = "512mb"
+  private_networking = true
+  backups            = false
+  ipv6               = false
+  name               = "custom-node"
+  depends_on         = ["module.swarm-cluster"]
 
-    connection {
-        type        = "ssh"
-        user        = "core"
-        private_key = "${file("~/.ssh/id_rsa")}"
-        timeout     = "2m"
-    }
+  connection {
+    type        = "ssh"
+    user        = "core"
+    private_key = "${file("~/.ssh/id_rsa")}"
+    timeout     = "2m"
+  }
 
-    provisioner "remote-exec" {
-        inline = [
-            "sudo docker swarm join --token ${module.swarm-cluster.worker_token} ${module.swarm-cluster.manager_ips_private[0]}:2377"
-        ]
-    }
-
+  provisioner "remote-exec" {
+    inline = [
+      "sudo docker swarm join --token ${module.swarm-cluster.worker_token} ${module.swarm-cluster.manager_ips_private[0]}:2377",
+    ]
+  }
 }

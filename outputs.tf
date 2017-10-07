@@ -1,32 +1,31 @@
-
 output "manager_ips" {
-  value = ["${digitalocean_droplet.manager.*.ipv4_address}"]
+  value       = ["${module.managers.ipv4_addresses}"]
   description = "The manager nodes public ipv4 adresses"
 }
 
 output "manager_ips_private" {
-  value = ["${digitalocean_droplet.manager.*.ipv4_address_private}"]
+  value       = ["${module.managers.ipv4_addresses_private}"]
   description = "The manager nodes private ipv4 adresses"
 }
 
 output "worker_ips" {
-  value = ["${digitalocean_droplet.worker.*.ipv4_address}"]
+  value       = ["${module.workers.ipv4_addresses}"]
   description = "The worker nodes public ipv4 adresses"
 }
 
 output "worker_ips_private" {
-  value = ["${digitalocean_droplet.worker.*.ipv4_address_private}"]
+  value       = ["${module.workers.ipv4_addresses_private}"]
   description = "The worker nodes private ipv4 adresses"
 }
 
 output "manager_token" {
-  value = "${data.external.swarm_tokens.result.manager}"
+  value       = "${module.managers.manager_token}"
   description = "The Docker Swarm manager join token"
-  sensitive = true
+  sensitive   = true
 }
 
 output "worker_token" {
-  value = "${data.external.swarm_tokens.result.worker}"
+  value       = "${module.managers.worker_token}"
   description = "The Docker Swarm worker join token"
-  sensitive = true
+  sensitive   = true
 }

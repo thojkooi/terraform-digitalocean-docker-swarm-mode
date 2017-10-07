@@ -1,6 +1,6 @@
-# Example: extra droplets
+# Example: cluster with firewall
 
-This example shows how to add other droplets that are not provisioned by this module to the Swarm cluster using output values.
+This example shows how to set up firewall rules for a DigitalOcean swarm mode cluster.
 
 ## Running it
 

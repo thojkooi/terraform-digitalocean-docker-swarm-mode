@@ -8,7 +8,7 @@ module "managers" {
   region = "${var.region}"
   domain = "${var.domain}"
 
-  total_instances = "${var.total_managers + 1}"
+  total_instances = "${var.total_managers}"
   user_data       = "${var.manager_user_data}"
   tags            = "${var.manager_tags}"
 

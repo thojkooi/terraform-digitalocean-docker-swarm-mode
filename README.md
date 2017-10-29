@@ -2,6 +2,8 @@
 
 Terraform module to provision a Docker Swarm mode cluster in a single availability zone on DigitalOcean, using a private network.
 
+[![CircleCI](https://circleci.com/gh/thojkooi/terraform-digitalocean-docker-swarm-mode.svg?style=svg)](https://circleci.com/gh/thojkooi/terraform-digitalocean-docker-swarm-mode)
+
 - [Requirements](#requirements)
 - [Usage](#usage)
 - [Examples](#examples)

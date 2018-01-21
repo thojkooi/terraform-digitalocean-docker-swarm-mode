@@ -21,7 +21,8 @@ resource "digitalocean_tag" "worker" {
 }
 
 module "swarm-cluster" {
-  source           = "github.com/thojkooi/terraform-digitalocean-docker-swarm-mode"
+  source           = "thojkooi/docker-swarm-mode/digitalocean"
+  version          = "0.1.0"
   total_managers   = 3
   total_workers    = 5
   region           = "ams3"

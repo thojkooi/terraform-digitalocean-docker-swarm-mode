@@ -11,7 +11,7 @@ Terraform module to provision a Docker Swarm mode cluster in a single availabili
 
 ## Requirements
 
-- Terraform >= 0.10.6
+- Terraform >= 0.11.2
 - Digitalocean account / API token with write access
 - SSH Keys added to your DigitalOcean account
 - [jq](https://github.com/stedolan/jq)
@@ -20,7 +20,8 @@ Terraform module to provision a Docker Swarm mode cluster in a single availabili
 
 ```hcl
 module "swarm-cluster" {
-  source           = "github.com/thojkooi/terraform-digitalocean-docker-swarm-mode"
+  source           = "thojkooi/docker-swarm-mode/digitalocean"
+  version          = "0.1.0"
   domain           = "do.example.com"
   total_managers   = 3
   total_workers    = 2
@@ -48,7 +49,8 @@ You can use user_data to manually install Docker on other OS images or use it to
 
 ```hcl
 module "swarm-cluster" {
-    source            = "github.com/thojkooi/terraform-digitalocean-docker-swarm-mode"
+    source            = "thojkooi/docker-swarm-mode/digitalocean"
+    version           = "0.1.0"
     total_managers    = 1
     total_workers     = 1
     domain            = "do.example.com"
@@ -71,7 +73,8 @@ module "swarm-cluster" {
 ```hcl
 
 module "swarm-cluster" {
-    source           = "github.com/thojkooi/terraform-digitalocean-docker-swarm-mode"
+    source           = "thojkooi/docker-swarm-mode/digitalocean"
+    version          = "0.1.0"
     total_managers   = 1
     total_workers    = 0
     region           = "ams3"
@@ -85,7 +88,7 @@ resource "digitalocean_droplet" "worker" {
     ssh_keys           = "${var.ssh_keys}"
     image              = "coreos-alpha"
     region             = "ams3"
-    size               = "512mb"
+    size               = "s-1vcpu-1gb"
     private_networking = true
     backups            = false
     ipv6               = false

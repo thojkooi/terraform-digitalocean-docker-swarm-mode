@@ -7,4 +7,6 @@ jobs:
       - checkout
       - run:
           name: Validate terraform code
-          command: terraform validate
+          command: |
+            terraform init
+            terraform validate -check-variables=false

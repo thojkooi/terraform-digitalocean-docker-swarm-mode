@@ -21,7 +21,11 @@ resource "digitalocean_tag" "worker" {
 }
 
 module "swarm-cluster" {
-  source            = "../../"
+  source = "../../"
+
+  # source            = "thojkooi/docker-swarm-mode/digitalocean"
+  # version           = "0.1.0"
+
   total_managers    = 1
   total_workers     = 1
   domain            = "do.example.com"

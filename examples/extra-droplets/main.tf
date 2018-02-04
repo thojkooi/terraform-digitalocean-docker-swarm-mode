@@ -24,7 +24,7 @@ resource "digitalocean_droplet" "worker" {
   ssh_keys           = "${var.ssh_keys}"
   image              = "coreos-alpha"
   region             = "ams3"
-  size               = "512mb"
+  size               = "s-1vcpu-1gb"
   private_networking = true
   backups            = false
   ipv6               = false

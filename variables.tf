@@ -53,12 +53,12 @@ variable "worker_image" {
 
 variable "manager_size" {
   description = "Droplet size of worker nodes"
-  default     = "512mb"
+  default     = "s-1vcpu-1gb"
 }
 
 variable "worker_size" {
   description = "Droplet size of worker nodes"
-  default     = "512mb"
+  default     = "s-1vcpu-1gb"
 }
 
 variable "manager_name" {

@@ -1,5 +1,5 @@
 module "managers" {
-  source   = "github.com/thojkooi/terraform-digitalocean-swarm-managers?ref=v0.1.1"
+  source   = "github.com/thojkooi/terraform-digitalocean-swarm-managers?ref=v0.1.2"
   do_token = "${var.do_token}"
 
   image  = "${var.manager_image}"
@@ -18,7 +18,7 @@ module "managers" {
 }
 
 module "workers" {
-  source   = "github.com/thojkooi/terraform-digitalocean-swarm-workers?ref=v0.1.0"
+  source   = "github.com/thojkooi/terraform-digitalocean-swarm-workers?ref=v0.2.0"
   do_token = "${var.do_token}"
 
   image  = "${var.worker_image}"

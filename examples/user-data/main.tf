@@ -29,7 +29,6 @@ module "swarm-cluster" {
   total_managers    = 1
   total_workers     = 1
   domain            = "do.example.com"
-  do_token          = "${var.do_token}"
   manager_ssh_keys  = "${var.ssh_keys}"
   worker_ssh_keys   = "${var.ssh_keys}"
   manager_image     = "centos-7-x64"

@@ -10,3 +10,6 @@
 *.tfstate
 *.tfstate.*
 .terraform
+
+# Ignore secret files
+.secrets

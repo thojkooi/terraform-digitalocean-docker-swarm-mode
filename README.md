@@ -16,7 +16,6 @@ Terraform module to provision a Docker Swarm mode cluster in a single availabili
 - SSH Keys added to your DigitalOcean account
 - [jq](https://github.com/stedolan/jq)
 
-
 ## Usage
 
 ```hcl
@@ -64,8 +63,6 @@ module "swarm_mode_cluster" {
 ```
 
 > Note that for this to work, you need to open the Docker remote API port in both iptables (not necessary with default images) and the DigitalOcean cloud firewall.
-
-
 
 ## Notes
 

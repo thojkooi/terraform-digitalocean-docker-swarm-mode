@@ -1,0 +1,12 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: jonatanblue/gitlab-ci-terraform:latest
+    steps:
+      - checkout
+      - run:
+          name: Validate terraform code
+          command: |
+            terraform init
+            terraform validate -check-variables=false

@@ -14,7 +14,6 @@ module "swarm-cluster" {
   total_managers   = 1
   total_workers    = 0
   region           = "ams3"
-  do_token         = "${var.do_token}"
   manager_ssh_keys = "${var.ssh_keys}"
   worker_ssh_keys  = "${var.ssh_keys}"
   domain           = "do.example.com"

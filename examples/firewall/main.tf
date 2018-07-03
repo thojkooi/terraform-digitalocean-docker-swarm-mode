@@ -26,7 +26,6 @@ module "swarm-cluster" {
   total_workers    = 5
   version          = "0.1.1"
   region           = "ams3"
-  do_token         = "${var.do_token}"
   manager_ssh_keys = "${var.ssh_keys}"
   worker_ssh_keys  = "${var.ssh_keys}"
   manager_size     = "s-1vcpu-1gb"

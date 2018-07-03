@@ -1,7 +1,3 @@
-variable "do_token" {
-  description = "DigitalOcean API token with read/write permissions"
-}
-
 variable "domain" {
   description = "Domain name used in droplet hostnames, e.g example.com"
 }
@@ -91,4 +87,19 @@ variable "worker_tags" {
   description = "List of DigitalOcean tag ids"
   default     = []
   type        = "list"
+}
+
+variable "remote_api_ca" {
+  description = "CA file path for the docker remote API"
+  default     = ""
+}
+
+variable "remote_api_key" {
+  description = "Private key file path for the docker remote API"
+  default     = ""
+}
+
+variable "remote_api_certificate" {
+  description = "Certificate file path for the docker remote API"
+  default     = ""
 }

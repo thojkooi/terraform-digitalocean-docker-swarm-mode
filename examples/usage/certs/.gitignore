@@ -1,0 +1,4 @@
+*.json
+*.pem
+*.csr
+.docker

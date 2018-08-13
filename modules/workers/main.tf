@@ -25,7 +25,7 @@ resource "digitalocean_droplet" "node" {
     type        = "ssh"
     user        = "${var.provision_user}"
     private_key = "${file("${var.provision_ssh_key}")}"
-    timeout     = "2m"
+    timeout     = "${var.connection_timeout}"
   }
 
   provisioner "file" {

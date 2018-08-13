@@ -33,7 +33,7 @@ resource "digitalocean_droplet" "manager" {
     type        = "ssh"
     user        = "${var.provision_user}"
     private_key = "${file("${var.provision_ssh_key}")}"
-    timeout     = "2m"
+    timeout     = "${var.connection_timeout}"
   }
 
   provisioner "file" {
@@ -73,7 +73,7 @@ resource "null_resource" "manager_api_access" {
     type        = "ssh"
     user        = "${var.provision_user}"
     private_key = "${file("${var.provision_ssh_key}")}"
-    timeout     = "2m"
+    timeout     = "${var.connection_timeout}"
   }
 
   provisioner "remote-exec" {
@@ -134,7 +134,7 @@ resource "null_resource" "bootstrap" {
     type        = "ssh"
     user        = "${var.provision_user}"
     private_key = "${file("${var.provision_ssh_key}")}"
-    timeout     = "2m"
+    timeout     = "${var.connection_timeout}"
   }
 
   provisioner "file" {

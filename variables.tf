@@ -1,6 +1,6 @@
 variable "connection_timeout" {
   description = "Timeout for connection to servers"
-  default = "5m"
+  default = "2m"
 }
 
 variable "domain" {

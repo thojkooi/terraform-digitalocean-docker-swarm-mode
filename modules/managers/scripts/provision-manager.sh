@@ -9,6 +9,12 @@ while [ -z "$(${docker_cmd} info | grep CPUs)" ]; do
   sleep 2
 done
 
+# Check if we got an error and are re-running
+if [ "$(${docker_cmd} info | grep 'Swarm: error')" ]; then
+  # Leave cluster before re-joining
+  ${docker_cmd} swarm leave
+fi
+
 # Check if we are not already joined into a Swarm
 if [ -z "$(${docker_cmd} info | grep 'Swarm: active')" ]; then
   # Join cluster

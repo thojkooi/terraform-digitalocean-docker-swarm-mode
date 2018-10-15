@@ -25,9 +25,10 @@ resource "digitalocean_droplet" "manager" {
   backups            = "${var.backups}"
   ipv6               = false
   tags               = ["${var.tags}"]
-  user_data          = "${var.user_data}"
-  count              = "${var.total_instances}"
-  name               = "${format("%s-%02d.%s.%s", var.name, count.index + 1, var.region, var.domain)}"
+
+  # user_data          = "${var.user_data}"
+  count = "${var.total_instances}"
+  name  = "${format("%s-%02d.%s.%s", var.name, count.index + 1, var.region, var.domain)}"
 
   connection {
     type        = "ssh"
@@ -52,7 +53,7 @@ resource "digitalocean_droplet" "manager" {
     when = "destroy"
 
     inline = [
-      "timeout 25 docker swarm leave",
+      "timeout 25 docker swarm leave --force",
     ]
 
     on_failure = "continue"

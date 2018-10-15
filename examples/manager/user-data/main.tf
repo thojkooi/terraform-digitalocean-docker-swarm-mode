@@ -17,7 +17,7 @@ resource "digitalocean_tag" "manager" {
 }
 
 module "swarm-cluster-managers" {
-  source          = "../../"
+  source          = "../../modules/managers"
   total_instances = 1
   domain          = "do.example.com"
   ssh_keys        = "${var.ssh_keys}"

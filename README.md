@@ -76,11 +76,11 @@ This module has been tested with Docker CE v18.06 and later. Earlier versions sh
 
 ### Supported OS
 
-This module has been tested with CoreOS, and CentOS 7.4 provided by DigitalOcean, but it should work with other distributions as well, as long as `Docker` and `sudo` packages are installed.
+This module has been tested with Ubuntu Docker (`docker-18-04`), CoreOS, and CentOS 7.4 provided by DigitalOcean, but it should work with other distributions as well, as long as `Docker` and `sudo` packages are installed.
 
 ### Ports & Firewall
 
-Ensure the following ports are open on the firewall;
+Ensure the following ports are open on the local firewall;
 
 Port       | Description                       | Note
 ---------- | --------------------------------- | -------
@@ -124,3 +124,7 @@ When you do not wish to expose your Docker API, you can use SSH to connect to on
 ### Worker nodes
 
 Worker nodes should be used to run the Docker Swarm mode Services. By default, 2 worker nodes are provisioned. Set the number of desired worker nodes using the following variable: `total_workers`.
+
+## License
+
+[MIT © Thomas Kooi](LICENSE)

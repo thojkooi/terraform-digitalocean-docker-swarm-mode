@@ -1,6 +1,6 @@
 variable "connection_timeout" {
   description = "Timeout for connection to servers"
-  default = "2m"
+  default     = "2m"
 }
 
 variable "domain" {
@@ -23,7 +23,7 @@ variable "provision_ssh_key" {
 }
 
 variable "provision_user" {
-  default     = "core"
+  default     = "root"
   description = "User used to log in to the droplets via ssh for issueing Docker commands"
 }
 
@@ -44,12 +44,12 @@ variable "total_workers" {
 
 variable "manager_image" {
   description = "Image for the manager nodes"
-  default     = "coreos-alpha"
+  default     = "docker-18-04"
 }
 
 variable "worker_image" {
   description = "Droplet image for the worker nodes"
-  default     = "coreos-alpha"
+  default     = "docker-18-04"
 }
 
 variable "manager_size" {
@@ -74,12 +74,18 @@ variable "worker_name" {
 
 variable "manager_user_data" {
   description = "User data content for manager nodes. Use this for installing a configuration management tool, such as Puppet or installing Docker"
-  default     = ""
+
+  default = <<EOF
+  #!/bin/sh
+EOF
 }
 
 variable "worker_user_data" {
   description = "User data content for worker nodes. Use this for installing a configuration management tool, such as Puppet or installing Docker"
-  default     = ""
+
+  default = <<EOF
+  #!/bin/sh
+EOF
 }
 
 variable "manager_tags" {

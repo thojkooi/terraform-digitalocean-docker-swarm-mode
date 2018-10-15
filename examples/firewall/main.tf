@@ -21,10 +21,13 @@ resource "digitalocean_tag" "worker" {
 }
 
 module "swarm-cluster" {
-  source           = "thojkooi/docker-swarm-mode/digitalocean"
+  # source           = "thojkooi/docker-swarm-mode/digitalocean"
+  source = "../../"
+
+  # version          = "0.2.0"
   total_managers   = 3
   total_workers    = 5
-  version          = "0.1.1"
+  version          = "0.2.0"
   region           = "ams3"
   manager_ssh_keys = "${var.ssh_keys}"
   worker_ssh_keys  = "${var.ssh_keys}"
@@ -36,10 +39,16 @@ module "swarm-cluster" {
 }
 
 module "swarm-firewall" {
-  source                     = "github.com/thojkooi/terraform-digitalocean-docker-swarm-firewall"
-  do_token                   = "${var.do_token}"
-  prefix                     = "example-com"
-  cluster_tags               = ["${digitalocean_tag.cluster.id}", "${digitalocean_tag.manager.id}", "${digitalocean_tag.worker.id}"]
-  cluster_droplet_ids        = []
-  allowed_outbound_addresses = ["0.0.0.0/0"]
+  source              = "thojkooi/docker-swarm-firewall/digitalocean"
+  version             = "1.0.0"
+  prefix              = "example-com"
+  cluster_tags        = ["${digitalocean_tag.cluster.id}", "${digitalocean_tag.manager.id}", "${digitalocean_tag.worker.id}"]
+  cluster_droplet_ids = []
+}
+
+module "default-firewall" {
+  source  = "thojkooi/firewall-rules/digitalocean"
+  version = "1.0.0"
+  prefix  = "example"
+  tags    = ["${digitalocean_tag.cluster.id}"]
 }

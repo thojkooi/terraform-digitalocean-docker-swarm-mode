@@ -1,6 +1,6 @@
 variable "connection_timeout" {
   description = "Timeout for connection to servers"
-  default = "2m"
+  default     = "2m"
 }
 
 variable "domain" {
@@ -18,7 +18,7 @@ variable "provision_ssh_key" {
 }
 
 variable "provision_user" {
-  default     = "core"
+  default     = "root"
   description = "User used to log in to the droplets via ssh for issueing Docker commands"
 }
 
@@ -34,7 +34,7 @@ variable "total_instances" {
 
 variable "image" {
   description = "Droplet image used for the manager nodes"
-  default     = "coreos-alpha"
+  default     = "docker-18-04"
 }
 
 variable "size" {
@@ -54,7 +54,10 @@ variable "backups" {
 
 variable "user_data" {
   description = "User data content for manager nodes"
-  default     = ""
+
+  default = <<EOF
+  #!/bin/sh
+EOF
 }
 
 variable "docker_cmd" {

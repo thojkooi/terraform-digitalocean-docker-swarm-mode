@@ -17,7 +17,7 @@ data "template_file" "provision_manager" {
 }
 
 resource "digitalocean_droplet" "manager" {
-  ssh_keys           = "${var.ssh_keys}"
+  ssh_keys           = ["${var.ssh_keys}"]
   image              = "${var.image}"
   region             = "${var.region}"
   size               = "${var.size}"

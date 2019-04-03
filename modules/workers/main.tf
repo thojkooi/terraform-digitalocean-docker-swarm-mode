@@ -9,7 +9,7 @@ data "template_file" "join_cluster_as_worker" {
 }
 
 resource "digitalocean_droplet" "node" {
-  ssh_keys           = "${var.ssh_keys}"
+  ssh_keys           = ["${var.ssh_keys}"]
   image              = "${var.image}"
   region             = "${var.region}"
   size               = "${var.size}"
